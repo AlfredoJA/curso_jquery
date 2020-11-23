@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+			<script src="js/jquery.min.js" type="text/javascript"></script>
+			<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>.
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+		<title>Curso JQuery</title>
+	</head>
+	<body>
+		<style>
+			html{
+				font-size:62.5%;
+			}
+			body{
+				background-color: orange;
+				width: 100%;
+				height: 100%;
+			}
+			.btn{
+				background-color: rgba(225,2,2,0.5);
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				margin-top: 5%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				left: 50%;
+				top: 50%;
+			}	
+			.btn p{
+				position: relative;
+				display: flex;
+				margin: 0;
+				color: white;
+				font-size:2rem;
+				font-weight: bold;
+
+			}
+			.btn img{
+				position: relative;
+				display: flex;
+				width: 100%;
+				height: auto;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+
+		<center>
+		
+			<button id="left" class="fa fa-backward"></button>
+			<button id="right" class="fa fa-forward"></button>
+			<button id="up" class="fa fa-caret-up"></button>
+			<button id="down" class="fa fa-caret-down"></button>
+		
+			<button class="btn btn-outline-primary">
+				<img src="pics/speedygonzales.gif">
+				<!--<p>
+					Press me!
+				</p>-->
+			</button>
+		</center>
+
+
+		<script>
+			$(function(){
+
+
+				/*for (var i=0; i<=100; i++) {
+					$('.btn').mousedown(function(){
+						i=98;
+					});
+					$('.btn').animate({'left':'+=200px'},200);
+					$('.btn').animate({'top':'+=200px'},200);
+					$('.btn').animate({'left':'-=200px'},200);
+					$('.btn').animate({'top':'-=200px'},200);
+					
+
+				}*/
+				$('.btn').mousedown(function(e){
+						if(e.which === 1){
+							$(this).animate({
+								height: ['+=300','easeOutBounce',],
+								width: ['+=200','linear']
+							});
+
+							$('.btn p').css('font-size','4rem');
+							$('.btn').removeClass('btn-outline-primary')
+							$('.btn').addClass('btn-outline-danger');
+						}
+						
+					});
+					$('.btn').mouseup(function(e){
+						if(e.which === 1){
+							$(this).animate({
+								height: ['-=300','easeOutBounce',],
+								width: ['-=200','linear']
+							});
+							$('.btn p').css('font-size','2rem');
+							$('.btn').removeClass('btn-outline-danger');
+							$('.btn').addClass('btn-outline-primary');
+						}
+						
+					});
+				
+					var eje_x = [];
+					var eje_y = [];
+					$('.btn').mouseup(function () {
+						Eje_X_Aleatorio(0, 500);
+						Eje_Y_Aleatorio(0, 500);
+						for(var i = 0; i<=1; i++){
+							console.log(eje_x[i]);
+							console.log(eje_y[i]);
+						}
+						$('.btn').animate({'left':'+='+eje_x[0]},100);
+						$('.btn').animate({'top':'+='+eje_y[0]},100);
+						$('.btn').animate({'left':'-='+eje_x[1]},100);
+						$('.btn').animate({'top':'-='+eje_y[1]},100);
+					});
+				
+					function Eje_X_Aleatorio(min, max) {
+						for(var i = 0; i<=1 ; i++){
+							var num = Math.round(Math.random() * (max - min) + min);
+							eje_x[i] = num;
+						}
+						
+					}
+					function Eje_Y_Aleatorio(min, max) {
+						for(var i = 0; i<=1 ; i++){
+							var num = Math.round(Math.random() * (max - min) + min);
+							eje_y[i] = num;
+						}
+						
+					}
+					$('body').keydown(function(event){
+						if(event.keyCode == 37){
+							$('.btn').animate({'left':'-=5px'},1);
+							console.log('left');
+						}else if(event.keyCode == 39){
+							$('.btn').animate({'left':'+=5px'},1);
+							console.log('right');
+						}else if(event.keyCode == 38){
+							$('.btn').animate({'top':'-=5px'},1);
+							console.log('up');
+						}else if(event.keyCode == 40){
+							$('.btn').animate({'top':'+=5px'},1);
+							console.log('down');
+						}else{
+							console.log('presione las teclas de dirección');
+						}
+					});
+						
+						
+					
+				/*	$('#left').click(function(){
+						$('.btn').animate({'left':'-=5px'});
+						console.log('left');
+					});
+					$('#right').click(function(){
+						$('.btn').animate({'left':'+=5px'});
+						console.log('right');
+					});
+					$('#up').click(function(){
+						$('.btn').animate({'top':'-=5px'});
+						console.log('up');
+					});
+					$('#down').click(function(){
+						$('.btn').animate({'top':'+=5px'});
+						console.log('down');
+					});
+					$('.btn').mousedown(function(e){
+						if(e.which === 1){
+							$(this).animate({
+								height: ['+=300','easeOutBounce',],
+								width: ['+=200','linear']
+							});
+
+							$('.btn p').css('font-size','4rem');
+							$('.btn').removeClass('btn-outline-primary')
+							$('.btn').addClass('btn-outline-danger');
+						}
+						
+					});
+					$('.btn').mouseup(function(e){
+						if(e.which === 1){
+							$(this).animate({
+								height: ['-=300','easeOutBounce',],
+								width: ['-=200','linear']
+							});
+							$('.btn p').css('font-size','2rem');
+							$('.btn').removeClass('btn-outline-danger');
+							$('.btn').addClass('btn-outline-primary');
+						}
+						
+					});*/
+
+				
+			});
+		</script>
+	</body>
+</html>

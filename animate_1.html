@@ -22,6 +22,9 @@
 				height: 100%;
 			}
 			#Contenedor_principal{
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				margin: 10px;
 				border: 2px solid #000;
 				height: 600px;
@@ -61,11 +64,11 @@
 			<button id="down" class="fa fa-caret-down"></button>
 		
 			<div id="Contenedor_principal">
+				
 				<button class="btn btn-outline-primary">
+				
 				<img src="pics/speedygonzales.gif">
-				<!--<p>
-					Press me!
-				</p>-->
+				
 				</button>
 			</div>
 		</center>
@@ -73,19 +76,11 @@
 
 		<script>
 			$(function(){
+				var desplazamiento = [];
+				var direccion = ['top','left','top','top','top','left','left','top','left','left','top','top','left'];
+				var number = [];
+				
 
-
-				/*for (var i=0; i<=100; i++) {
-					$('.btn').mousedown(function(){
-						i=98;
-					});
-					$('.btn').animate({'left':'+=200px'},200);
-					$('.btn').animate({'top':'+=200px'},200);
-					$('.btn').animate({'left':'-=200px'},200);
-					$('.btn').animate({'top':'-=200px'},200);
-					
-
-				}*/
 				$('.btn').mousedown(function(e){
 						if(e.which === 1){
 							$(this).animate({
@@ -108,57 +103,32 @@
 							$('.btn p').css('font-size','2rem');
 							$('.btn').removeClass('btn-outline-danger');
 							$('.btn').addClass('btn-outline-primary');
+							dir = {};
+							for (var i = 0; i <= 1; i++) {
+								desplazamiento_Aleatorio(0, 100);
+								sentido_random(0, 12);
+								dir[direccion[number]] = '+='+desplazamiento;
+								console.log(number);
+								console.log(desplazamiento + " x");
+								$('.btn').animate(dir,10);
+								desplazamiento_Aleatorio(0, 100);
+								sentido_random(0, 12);
+								dir[direccion[number]] = '-='+desplazamiento;
+								$('.btn').animate(dir,10);
+								console.log(number);
+								console.log(desplazamiento + " y");
+							}
 						}
 						
 					});
-				
-					var eje_x = [];
-					var eje_y = [];
-					var direccion = ['left','top'];
-					var number = [];
-				
-					$('.btn').mouseup(function () {
-						Eje_X_Aleatorio(0, 500);
-						Eje_Y_Aleatorio(0, 500);
-						sentido_random(0, 3);
-						console.log(number);
-						for(var i = 0; i<=1; i++){
-							console.log(eje_x[i]);
-							console.log(eje_y[i]);
-							console.log(number[i]);
-							console.log(number[i+2]);
-						}
-						dir = {};
-						for (var i = 0; i <= 3; i++) {
-							dir[direccion[number[i]]] = '+='+eje_x[number[i]];
-							$('.btn').animate(dir,100);
-						}
-						/*dir[direccion[number[0]]] = '+='+eje_x[0];
-						$('.btn').animate(dir,100);
-						$('.btn').animate({'top':'+='+eje_y[0]},100);
-						$('.btn').animate({'left':'-='+eje_x[1]},100);
-						$('.btn').animate({'top':'-='+eje_y[1]},100);
-						*/
-					});
-				
-					function Eje_X_Aleatorio(min, max) {
-						for(var i = 0; i<=1 ; i++){
+					function desplazamiento_Aleatorio(min, max) {
 							var num = Math.round(Math.random() * (max - min) + min);
-							eje_x[i] = num;
-						}
+							desplazamiento = num;
 						
-					}
-					function Eje_Y_Aleatorio(min, max) {
-						for(var i = 0; i<=1 ; i++){
-							var num = Math.round(Math.random() * (max - min) + min);
-							eje_y[i] = num;
-						}
 					}
 					function sentido_random(min, max) {
-						for(var i = 0; i<=3 ; i++){
 							var num = Math.round(Math.random() * (max - min) + min);
-							number[i] = num;
-						}						
+							number = num;						
 					}
 					$('body').keydown(function(event){
 						if(event.keyCode == 37){
@@ -176,10 +146,7 @@
 						}else{
 							console.log('presione las teclas de dirección');
 						}
-					});
-						
-						
-					
+					});				
 					$('#left').click(function(){
 						$('.btn').animate({'left':'-=20px'});
 						console.log('left');
@@ -195,34 +162,7 @@
 					$('#down').click(function(){
 						$('.btn').animate({'top':'+=20px'});
 						console.log('down');
-					});/*
-					$('.btn').mousedown(function(e){
-						if(e.which === 1){
-							$(this).animate({
-								height: ['+=300','easeOutBounce',],
-								width: ['+=200','linear']
-							});
-
-							$('.btn p').css('font-size','4rem');
-							$('.btn').removeClass('btn-outline-primary')
-							$('.btn').addClass('btn-outline-danger');
-						}
-						
 					});
-					$('.btn').mouseup(function(e){
-						if(e.which === 1){
-							$(this).animate({
-								height: ['-=300','easeOutBounce',],
-								width: ['-=200','linear']
-							});
-							$('.btn p').css('font-size','2rem');
-							$('.btn').removeClass('btn-outline-danger');
-							$('.btn').addClass('btn-outline-primary');
-						}
-						
-					});*/
-
-				
 			});
 		</script>
 	</body>

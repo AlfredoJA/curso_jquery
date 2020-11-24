@@ -108,15 +108,15 @@
 								desplazamiento_Aleatorio(0, 100);
 								sentido_random(0, 12);
 								dir[direccion[number]] = '+='+desplazamiento;
-								console.log(number);
-								console.log(desplazamiento + " x");
+								//console.log(number);
+								//console.log(desplazamiento + " x");
 								$('.btn').animate(dir,10);
 								desplazamiento_Aleatorio(0, 100);
 								sentido_random(0, 12);
 								dir[direccion[number]] = '-='+desplazamiento;
 								$('.btn').animate(dir,10);
-								console.log(number);
-								console.log(desplazamiento + " y");
+								//console.log(number);
+								//console.log(desplazamiento + " y");
 							}
 						}
 						
@@ -124,7 +124,6 @@
 					function desplazamiento_Aleatorio(min, max) {
 							var num = Math.round(Math.random() * (max - min) + min);
 							desplazamiento = num;
-						
 					}
 					function sentido_random(min, max) {
 							var num = Math.round(Math.random() * (max - min) + min);
@@ -147,19 +146,19 @@
 							console.log('presione las teclas de dirección');
 						}
 					});				
-					$('#left').click(function(){
+					$('#left').mousedown(function(){
 						$('.btn').animate({'left':'-=20px'});
 						console.log('left');
 					});
-					$('#right').click(function(){
+					$('#right').mousedown(function(){
 						$('.btn').animate({'left':'+=20px'});
 						console.log('right');
 					});
-					$('#up').click(function(){
+					$('#up').mousedown(function(){
 						$('.btn').animate({'top':'-=20px'});
 						console.log('up');
 					});
-					$('#down').click(function(){
+					$('#down').mousedown(function(){
 						$('.btn').animate({'top':'+=20px'});
 						console.log('down');
 					});
